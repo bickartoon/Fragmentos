@@ -226,18 +226,21 @@ function interact(x,y){
 
         firstTouch = true;
 
-document
-.getElementById("message")
-.classList
-.add("hide");
+        document
+        .getElementById("message")
+        .classList
+        .add("hide");
 
-ambient.volume = 1;
+        ambient.volume = 1;
 
-ambient.play().catch(error => {
-    console.log("Error al reproducir:", error);
-});
+        ambient.play().catch(error => {
+            console.log("Error al reproducir:", error);
+        });
 
-reveal(x,y);
+    }
+
+    reveal(x,y);
+
 }
 
 canvas.addEventListener(
