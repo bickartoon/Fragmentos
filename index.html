@@ -104,6 +104,10 @@ Fragmentos
 TOCA LA PANTALLA
 </div>
 
+<audio id="ambient" loop preload="auto">
+    <source src="audio/ambient.mp3" type="audio/mpeg">
+</audio>
+
 <script>
 
 const images = [
@@ -127,6 +131,9 @@ document.getElementById("bg")
 
 const canvas =
 document.getElementById("canvas");
+
+const ambient =
+document.getElementById("ambient");
 
 const ctx =
 canvas.getContext("2d");
@@ -214,18 +221,34 @@ function reveal(x,y){
 }
 
 function interact(x,y){
+if(!firstTouch){
 
-    if(!firstTouch){
+    firstTouch = true;
 
-        firstTouch = true;
+    document
+    .getElementById("message")
+    .classList
+    .add("hide");
 
-        document
-        .getElementById("message")
-        .classList
-        .add("hide");
+ambient.volume = 0;
+
+ambient.play();
+
+let v = 0;
+
+const fade = setInterval(() => {
+
+    v += 0.02;
+
+    ambient.volume = Math.min(v,0.35);
+
+    if(v >= 0.35){
+
+        clearInterval(fade);
+
     }
 
-    reveal(x,y);
+},100);
 }
 
 canvas.addEventListener(
