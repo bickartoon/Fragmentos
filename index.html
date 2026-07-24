@@ -226,34 +226,18 @@ function interact(x,y){
 
         firstTouch = true;
 
-        document
-        .getElementById("message")
-        .classList
-        .add("hide");
+document
+.getElementById("message")
+.classList
+.add("hide");
 
-        ambient.volume = 0;
+ambient.volume = 1;
 
-        ambient.play();
+ambient.play().catch(error => {
+    console.log("Error al reproducir:", error);
+});
 
-        let v = 0;
-
-        const fade = setInterval(() => {
-
-            v += 0.02;
-
-            ambient.volume = Math.min(v,0.35);
-
-            if(v >= 0.35){
-
-                clearInterval(fade);
-
-            }
-
-        },100);
-    }
-
-    reveal(x,y);
-
+reveal(x,y);
 }
 
 canvas.addEventListener(
